@@ -17,7 +17,7 @@ public class Movie {
     //initialize from the JSon data
     public Movie(JSONObject object) throws JSONException {
         title = object.getString("title");
-        overview = object.getString("poster_path");
+        overview = object.getString("overview");
         posterPath = object.getString("poster_path");
 
     }

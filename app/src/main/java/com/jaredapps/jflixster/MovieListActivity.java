@@ -2,6 +2,8 @@ package com.jaredapps.jflixster;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -20,7 +22,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class MovieListActivity extends AppCompatActivity {
     //base url for api
-    public final static  String API_BASE_URL = "htpps://api.themoviedb.org/3";
+    public final static  String API_BASE_URL = "https://api.themoviedb.org/3";
     //the parameter name for the api key
     public final static String API_KEY_PARAM = "api_key";
 
@@ -39,6 +41,12 @@ public class MovieListActivity extends AppCompatActivity {
     //the list of currently playing movies
     ArrayList<Movie> movies;
 
+    //the recycler view
+    RecyclerView rvMovies;
+
+    //the adapter wired to the recycler view
+    MovieAdapter adapter;
+
 
 
     @Override
@@ -49,6 +57,17 @@ public class MovieListActivity extends AppCompatActivity {
         client = new AsyncHttpClient();
         //initialize the list of movies
         movies = new ArrayList<>();
+
+        //initialize the adapter
+        adapter = new MovieAdapter(movies);
+
+        //resolve the recylcer view and connect a layout manager
+        rvMovies = (RecyclerView) findViewById(R.id.rvMovies);
+        rvMovies.setLayoutManager(new LinearLayoutManager(this));
+        rvMovies.setAdapter(adapter);
+
+        //video stopped at 32:20
+
         //get the configuration on app creation
         getConfiguration();
 
@@ -72,8 +91,13 @@ public class MovieListActivity extends AppCompatActivity {
                     JSONArray results = response.getJSONArray("results");
                     //iterate through result set and create movie objects
                     for (int i =0; i < results.length(); i++){
-                     Log.i(TAG, String.format("loaded %s movies" , results.length()));
+                        Movie movie = new Movie (results.getJSONObject(i));
+                        movies.add(movie);
+                        //notify the adapter
+                        adapter.notifyItemInserted(movies.size() - 1);
                     }
+                    Log.i(TAG, String.format("loaded %s movies" , results.length()));
+
                 } catch (JSONException e) {
                     logError("Failed to parse now playing movies" , e , true);
                 }
