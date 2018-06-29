@@ -13,6 +13,8 @@ import com.jaredapps.jflixster.models.Movie;
 
 import java.util.ArrayList;
 
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
+
 /**
  * Created by jared1158 on 6/27/18.
  */
@@ -62,11 +64,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         //load image using glide
         GlideApp.with(context)
                 .load(imageUrl)
+                .transform(new RoundedCornersTransformation(25, 0))
                 .placeholder(R.drawable.flicks_movie_placeholder)
                 .error(R.drawable.flicks_movie_placeholder)
                 .into(holder.ivPosterImage);
 
-    } 
+    }
     //returns the total number of items in the list
     @Override
     public int getItemCount() {
