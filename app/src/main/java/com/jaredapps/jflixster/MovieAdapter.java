@@ -66,7 +66,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                 .error(R.drawable.flicks_movie_placeholder)
                 .into(holder.ivPosterImage);
 
-    }
+    } 
     //returns the total number of items in the list
     @Override
     public int getItemCount() {
