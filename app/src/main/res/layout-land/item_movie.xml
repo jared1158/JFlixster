@@ -6,8 +6,8 @@
 
     <ImageView
         android:id="@+id/ivBackdropImage"
-        android:layout_width="480dp"
-        android:layout_height="300dp"
+        android:layout_width="400dp"
+        android:layout_height="350dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
@@ -36,5 +36,6 @@
         android:layout_below="@+id/tvTitle"
         android:layout_toEndOf="@+id/ivBackdropImage"
         android:layout_toRightOf="@+id/ivBackdropImage"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textAppearance="@android:style/TextAppearance.Small" />
 </RelativeLayout>

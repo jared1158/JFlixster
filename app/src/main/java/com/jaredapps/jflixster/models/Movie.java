@@ -14,6 +14,10 @@ public class Movie {
     private String overview;
     private String posterPath; // only the path
     private String backdropPath;
+    double voteAverage;
+
+    // no arg, empty constructor required for parceler
+    public Movie(){}
 
     //initialize from the JSon data
     public Movie(JSONObject object) throws JSONException {
@@ -21,6 +25,7 @@ public class Movie {
         overview = object.getString("overview");
         posterPath = object.getString("poster_path");
         backdropPath = object.getString("backdrop_path");
+        voteAverage = object.getDouble("vote_average");
 
     }
 
@@ -39,5 +44,9 @@ public class Movie {
 
     public String getBackdropPath() {
         return backdropPath;
+    }
+
+    public double getVoteAverage() {
+        return voteAverage;
     }
 }
