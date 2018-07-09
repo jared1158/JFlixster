@@ -6,7 +6,7 @@ import org.json.JSONObject;
 /**
  * Created by jared1158 on 6/27/18.
  */
-
+@Parcel
 public class Movie {
 
     //values from the api
